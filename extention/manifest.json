@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Jarvis Assitant",
+  "description": "it listens, it does",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_title":"JA",
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "background",
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+ ],
+ "background":{
+  "scripts":["background.js"]
+ }
+}
