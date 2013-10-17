@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
-var plugins=[{app:"jarvis",type:"web",method:"sayHello",text:"hi jarvis"}];
-var whatSheSaid = "hi jarvis";
+var plugins=[{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe",text:"open browser"},
+{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"run demo"}];
+var whatSheSaid = "run demo";
+var spawn = require('child_process').spawn;
 
 
 app.use(express.bodyParser());
@@ -67,10 +69,18 @@ function deleteAppPlugins(appName){
 
 function myNextAction(){
 	for(var index=0; index < plugins.length; index++) {
-		if (whatSheSaid.indexOf(plugins[index].text) != -1){
-			console.log(whatSheSaid);
+		if(whatSheSaid.indexOf(plugins[index].text) != -1) {
+			if (plugins[index].type.indexOf("web")!=-1){
+				return plugins[index];
+			}else if (plugins[index].type.indexOf("os")!=-1){
+				var args= plugins[index].method.split('`')
+				if (args[1]!=null){
+					spawn(args[0],[args[1]]);
+				}else{
+					spawn(args[0]);
+				}
+			}
 			whatSheSaid="";
-			return plugins[index];
 		}
 	}
 	return {};
