@@ -44,7 +44,6 @@ function init(){
 	loadJarvis.appendChild(circle8);
 
 	document.body.appendChild(loadJarvis);
-	console.log("wait enabled");
 }
 
 init();

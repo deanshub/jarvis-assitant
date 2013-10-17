@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
-var plugins=[{app:"jarvis",type:"web",method:"sayhello",text:"hi jarvis"}];
+var plugins=[{app:"jarvis",type:"web",method:"sayHello",text:"hi jarvis"}];
+var whatSheSaid = "hi jarvis";
 
 
 app.use(express.bodyParser());
 
+app.get('/actions', function(req, res) {
+	res.send(myNextAction());
+});
 
 app.get('/plugins', function(req, res) {
 	res.send(findPlugin(null));
@@ -59,6 +63,17 @@ function deleteAppPlugins(appName){
 			index++;
 		}
 	}
+}
+
+function myNextAction(){
+	for(var index=0; index < plugins.length; index++) {
+		if (whatSheSaid.indexOf(plugins[index].text) != -1){
+			console.log(whatSheSaid);
+			whatSheSaid="";
+			return plugins[index];
+		}
+	}
+	return {};
 }
 
 console.log('web server running!');
