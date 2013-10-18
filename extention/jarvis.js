@@ -19,7 +19,8 @@ function searchJarvisActions(){
 		currApp = currApp.replace('http://','');
 		currApp = currApp.replace('www.','');
 		currApp = currApp.replace('.com/*','');
-
+		currApp = currApp.replace('#*','');
+		console.log(currApp);
 		$.ajax({
 			url:"http://localhost:1337/plugins",
 			success:pluginLoaded,

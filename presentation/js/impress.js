@@ -143,7 +143,7 @@
     var getElementFromHash = function () {
         // get id from url # by removing `#` or `#/` from the beginning,
         // so both "fallback" `#slide-id` and "enhanced" `#/slide-id` will work
-        return byId( window.location.hash.replace(/^#\/?/,"") );
+        //return byId( window.location.hash.replace(/^#\/?/,"") );
     };
     
     // `computeWindowScale` counts the scale factor between window size and size
@@ -608,20 +608,20 @@
             // And it has to be set after animation finishes, because in Chrome it
             // makes transtion laggy.
             // BUG: http://code.google.com/p/chromium/issues/detail?id=62820
-            root.addEventListener("impress:stepenter", function (event) {
-                window.location.hash = lastHash = "#/" + event.target.id;
-            }, false);
+            // root.addEventListener("impress:stepenter", function (event) {
+            //     window.location.hash = lastHash = "#/" + event.target.id;
+            // }, false);
             
-            window.addEventListener("hashchange", function () {
-                // When the step is entered hash in the location is updated
-                // (just few lines above from here), so the hash change is 
-                // triggered and we would call `goto` again on the same element.
-                //
-                // To avoid this we store last entered hash and compare.
-                if (window.location.hash !== lastHash) {
-                    goto( getElementFromHash() );
-                }
-            }, false);
+            // window.addEventListener("hashchange", function () {
+            //     // When the step is entered hash in the location is updated
+            //     // (just few lines above from here), so the hash change is 
+            //     // triggered and we would call `goto` again on the same element.
+            //     //
+            //     // To avoid this we store last entered hash and compare.
+            //     if (window.location.hash !== lastHash) {
+            //         goto( getElementFromHash() );
+            //     }
+            // }, false);
             
             // START 
             // by selecting step defined in url or first step of the presentation
@@ -737,7 +737,7 @@
                 
                 // if it's a link to presentation step, target this step
                 if ( href && href[0] === '#' ) {
-                    target = document.getElementById( href.slice(1) );
+                    //target = document.getElementById( href.slice(1) );
                 }
             }
             

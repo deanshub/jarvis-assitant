@@ -11,7 +11,8 @@ function click(e){
 
 chrome.browserAction.onClicked.addListener(click);
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.url != undefined){
+	console.log(changeInfo.url.indexOf('#'));
+    if ((changeInfo.url != undefined) && (changeInfo.url.indexOf('#')==-1)){
 	    click();
 	}
 });

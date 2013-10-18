@@ -1,14 +1,17 @@
 var express = require('express');
 var app = express();
 var plugins=[{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe",text:"open browser"},
-{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"run demo"}];
-var whatSheSaid = "run demo";
+{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"run demo"},
+{app:"jarvis",type:"os",method:"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe `C:\\Users\\Dean\\Dropbox\\Success\\success.mp3", text:"listen to audiobook"},
+{app:"jarvis",type:"os",method:"rundll32.exe`user32.dll,`LockWorkStation",text:"bye jarvis"}];
+var whatSheSaid = "next slide";
 var spawn = require('child_process').spawn;
 
 
 app.use(express.bodyParser());
 
 app.get('/actions', function(req, res) {
+	spawn("soundrecorder",["/FILE", "C:\\git\\jarvis-assistant\\temp\\temp.wma", "/DURATION", "0000:00:03"]);
 	res.send(myNextAction());
 });
 
@@ -74,9 +77,11 @@ function myNextAction(){
 				return plugins[index];
 			}else if (plugins[index].type.indexOf("os")!=-1){
 				var args= plugins[index].method.split('`')
-				if (args[1]!=null){
+				if (args.length==3){
+					spawn(args[0],[args[1], args[2]]);
+				}else if (args.length==2){
 					spawn(args[0],[args[1]]);
-				}else{
+				}else if (args.length==1){
 					spawn(args[0]);
 				}
 			}
