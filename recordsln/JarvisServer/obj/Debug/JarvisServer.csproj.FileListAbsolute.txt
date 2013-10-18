@@ -1,0 +1,12 @@
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\bin\Debug\JarvisServer.exe.config
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\bin\Debug\JarvisServer.exe
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\bin\Debug\JarvisServer.pdb
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\obj\Debug\JarvisServer.exe
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\obj\Debug\JarvisServer.pdb
+c:\users\isyaniv\documents\visual studio 2012\Projects\JarvisServer\JarvisServer\obj\Debug\JarvisServer.csprojResolveAssemblyReference.cache
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\bin\Debug\JarvisServer.exe.config
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\obj\Debug\JarvisServer.exe
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\obj\Debug\JarvisServer.pdb
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\bin\Debug\JarvisServer.exe
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\bin\Debug\JarvisServer.pdb
+C:\yaniv\jarvis-assitant\recordsln\JarvisServer\obj\Debug\JarvisServer.csprojResolveAssemblyReference.cache
