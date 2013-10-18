@@ -18,6 +18,7 @@ namespace JarvisServer
         const string FILENAME = "voiceRec";
         const string SUFFIX = ".wav";
         static string PATH;
+        static string nSec;
         private static String Call_Google_Local(byte[] postData)
         {
             String data = "";
@@ -216,7 +217,7 @@ namespace JarvisServer
                 File.Delete(PATH + FILENAME + num + SUFFIX);
             }
             System.Diagnostics.Process process = new System.Diagnostics.Process();
-            process.StartInfo.Arguments = " " + PATH + FILENAME + num + SUFFIX + " 2 16 2 44100";
+            process.StartInfo.Arguments = " " + PATH + FILENAME + num + SUFFIX + " " +nSec + " 16 2 44100";
             process.StartInfo.FileName = Environment.CurrentDirectory + "\\cmd2wav.exe";
             //System.Console.Out.Write("Start Recording...");
             process.Start();
@@ -227,6 +228,7 @@ namespace JarvisServer
         static void Main(string[] args)
         {
             PATH = args[0].ToString();
+            nSec = args[1].ToString();
             num = 0;
             RecordWin();
             //System.Console.Out.Write("arg is " + args[0].ToString());
