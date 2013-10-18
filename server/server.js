@@ -1,17 +1,16 @@
 var express = require('express');
 var app = express();
 var plugins=[{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe",text:"open browser"},
-{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"run demo"},
+{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"demo"},
 {app:"jarvis",type:"os",method:"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe `C:\\Users\\Dean\\Dropbox\\Success\\success.mp3", text:"listen to audiobook"},
-{app:"jarvis",type:"os",method:"rundll32.exe`user32.dll,`LockWorkStation",text:"bye jarvis"}];
-var whatSheSaid = "next slide";
+{app:"jarvis",type:"os",method:"rundll32.exe`user32.dll,`LockWorkStation",text:"Jarvis I'm out"}];
+var whatSheSaid = "";
 var spawn = require('child_process').spawn;
 
 
 app.use(express.bodyParser());
 
 app.get('/actions', function(req, res) {
-	spawn("soundrecorder",["/FILE", "C:\\git\\jarvis-assistant\\temp\\temp.wma", "/DURATION", "0000:00:03"]);
 	res.send(myNextAction());
 });
 
@@ -73,7 +72,7 @@ function deleteAppPlugins(appName){
 function myNextAction(){
 	for(var index=0; index < plugins.length; index++) {
 		if(whatSheSaid.indexOf(plugins[index].text) != -1) {
-			if (plugins[index].type.indexOf("web")!=-1){
+			if (plugins[index].type.indexOf("web")!=-1) {
 				return plugins[index];
 			}else if (plugins[index].type.indexOf("os")!=-1){
 				var args= plugins[index].method.split('`')
@@ -91,4 +90,15 @@ function myNextAction(){
 	return {};
 }
 
+function record(){
+	spawn("JarvisServer",["C:\\git\\jarvis-assistant\\server\\", "3"]).stdout.on('data', function (data) {
+		console.log(''+data);
+  		whatSheSaid=''+data;
+  		myNextAction();
+  		setTimeout(record,3000);
+	});
+}
+
+
 console.log('web server running!');
+record();

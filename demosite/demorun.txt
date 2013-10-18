@@ -15,7 +15,8 @@ listen to audiobook
 open browser
 hello site
 show me the money
-run demo
+demo
 hello site
 show me the money
-bye jarvis
+next slide
+jarvis im out

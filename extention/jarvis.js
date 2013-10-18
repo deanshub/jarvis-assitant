@@ -40,15 +40,17 @@ function pluginLoaded(data, textStatus, jqXHR){
 
 function activateJarvis(){
 	if (actions.length>0){
-		//setInterval(function(){console.log("tick");},3000);
-		$.getJSON("http://localhost:1337/actions").done(function(json){
-			console.log(json);
-			if (json.method != null){
-				var activator = document.createElement("script");
-				activator.innerHTML=json.method + '();';
-				document.body.appendChild(activator);
-			}
-		});		
+		setInterval(function(){
+			$.getJSON("http://localhost:1337/actions").done(function(json){
+				console.log(json);
+				if (json.method != null){
+					var activator = document.createElement("script");
+					activator.innerHTML=json.method + '();';
+					document.body.appendChild(activator);
+				}
+			})
+		},5000);
+		
 	}
 }
 
