@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example of jarvis</title>
+	<link rel="stylesheet" type="text/css" href="css/jarvisIntro.css">
+</head>
+
+<body ng-app="jarvisIntro">
+<nav ng-controller="navbarCtrl">
+	<ul id="navbar">
+            <li ng-repeat="link in links" id="{{link.title}}" class="navbar-item">
+                    <a href="#/{{link.title}}">{{link.title}}</a>
+            </li>
+    </ul>
+</nav>
+
+
+<div ng-view>
+
+</div>
+
+<voice method="sayHello">
+hello site
+</voice>
+
+<voice method="money">
+show me the money
+</voice>
+
+
+<script type="text/javascript">
+function sayHello() {
+	alert("hello to you to dean and hello world");
+}
+
+function money(){
+	document.body.innerHTML="<h1>MONEY!</h1>";
+}
+</script>
+
+<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+<script type="text/javascript" src="js/jarvisIntro.js"></script>
+
+</body>
+</html>

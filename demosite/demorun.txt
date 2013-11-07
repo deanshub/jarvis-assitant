@@ -20,3 +20,22 @@ hello site
 show me the money
 next slide
 jarvis im out
+
+
+
+what it does
+why
+tutorial
+api
+
+https://github.com/telerik/kendo-music-store		X
+https://github.com/elfsternberg/The-Backbone-Store	X
+https://github.com/gregbell/demo.activeadmin.info	X
+https://github.com/jcranky/lojinha			?
+https://github.com/r7kamura/gig				X
+https://github.com/openappstore/openappstore-client	X
+http://www.opencart.com/index.php?route=common/home	X
+
+
+sound recorder
+http://audacity.sourceforge.net/

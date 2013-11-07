@@ -1,0 +1,27 @@
+<div>
+	<h1>Jarvis</h1>
+	<p>
+	The world acknowledges the need of using less energy to do more,
+	</p>
+	<p>
+	That’s the reason for smart phones, google glass and such…
+	</p>
+	<p>
+	So we plan to release to the world a new way of communicating by voice.
+	</p>
+	<p>
+	It will provide accessibility (especially for blind people) it will help upgrade any home 
+	</p>
+	<p>
+	into a "Smart home" easily and cheap.
+	</p>
+
+
+
+	<h2>say "hi jarvis" or "show me the money"</h2>
+
+	<input type="text" ng-model="searchPhrase.id"/>
+	<ul>
+		<li ng-repeat="user in users| filter:searchPhrase">{{user.id}} - {{user.firstName}} {{user.lastName}}</li>
+	</ul>
+</div>
