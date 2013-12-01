@@ -1,11 +1,16 @@
 var express = require('express');
+var s2t = require('googleS2T').s2t;
+var fs = require('fs');
+var spawn = require('child_process').spawn;
 var app = express();
+
 var plugins=[{app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe",text:"open browser"},
 {app:"jarvis",type:"os",method:"C:\\Users\\Dean\\Downloads\\chrome-win32\\chrome.exe `http://localhost/demo/jarvisExample.htm",text:"demo"},
 {app:"jarvis",type:"os",method:"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe `C:\\Users\\Dean\\Dropbox\\Success\\success.mp3", text:"listen to audiobook"},
 {app:"jarvis",type:"os",method:"rundll32.exe`user32.dll,`LockWorkStation",text:"Jarvis I'm out"}];
 var whatSheSaid = "";
-var spawn = require('child_process').spawn;
+var flacFiles=[];
+var FLAC_FILES_DIR = "files/";
 
 
 app.use(express.bodyParser());
@@ -90,15 +95,37 @@ function myNextAction(){
 	return {};
 }
 
-function record(){
-	spawn("JarvisServer",["C:\\git\\jarvis-assistant\\server\\", "3"]).stdout.on('data', function (data) {
-		console.log(''+data);
-  		whatSheSaid=''+data;
-  		myNextAction();
-  		setTimeout(record,3000);
+function listen(){
+	var hypotheses;
+	fs.watch(FLAC_FILES_DIR, function (event, filename) {
+	  if ((filename)&& (filename.length>5)  && (filename.indexOf(".flac")== filename.length -5) &&(event=="rename")) {
+	    s2t([FLAC_FILES_DIR + filename],
+		  true,
+		  {lang:'en-US'},
+		  function(err,ret){
+		  	console.log("filename: " + filename + " event: " + event);
+		  	//todo change to the what she said
+		    console.log(JSON.stringify(ret));
+		    if (ret){
+			    hypotheses=ret[0].hypotheses[0];
+			    if (hypotheses.confidence>0.5){
+			    	whatSheSaid=hypotheses.utterance;
+			    	myNextAction();
+				}
+			    // fs.unlink(filename, function(err){console.log(err);});
+			}
+		  }
+		);
+	  }
 	});
 }
 
 
 console.log('web server running!');
-record();
+
+app.configure(function(){
+  app.use('/demo', express.static("..\\demosite"));
+  // server.use(express.static(__dirname + '/public'));
+});
+
+listen();
