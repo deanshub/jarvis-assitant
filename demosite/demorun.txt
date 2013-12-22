@@ -25,6 +25,17 @@ jarvis im out
 
 what it does
 why
+
+
+
+
+
+????? ??????
+????? ?????? ????? ????? ?? ?????
+????? ?????? ????? ??????
+?? ?? ?? ???? ?? ?????? ???? ??? ??????? ?
+steaming ????? ??????
+?????? ?? ?????? ????
 tutorial
 api
 
@@ -39,3 +50,35 @@ http://www.opencart.com/index.php?route=common/home	X
 
 sound recorder
 http://audacity.sourceforge.net/
+
+
+linco -B 16 -C 1 -R 44100 | oggenc -r -B 16 -C 1 -R 44100 -q 1 - -o out.ogg
+linco -B 16 -C 2 -R 44100 | lame -r -x -s 44.1 --bitwidth 16 --r3mix - out.mp3
+linco -B 16 -C 2 -R 44100 | flac –endian=little –sign=signed –channels=2 –bps=16 –sample-rate=44100 - -o out.flac
+linco -B 16 -C 2 -R 44100 | "C:\Program Files (x86)\FLAC\flac.exe" –endian=little –sign=signed –channels=2 –bps=16 –sample-rate=44100 --output-name= out.flac
+linco -B 16 -C 2 -R 44100 -D 00:00:03 | oggenc - -r -B 16 -C 2 -R 44100 -o out.ogg -q 6
+
+https://d2pq0u4uni88oo.cloudfront.net/projects/672568/video-297058-webm.webm
+http://www.feeder.co.il/article-mako-is-a-virtual-assistant-for-computers-1000891088
+http://www.kickstarter.com/projects/1727746501/mako-artificial-intelligence-program-that-does-eve?ref=category
+https://www.facebook.com/MakoProgram
+working with sox silence : https://gist.github.com/alotaiba/1730160
+
+
+
+"C:\Program Files (x86)\sox-14-4-0\sox.exe" -r 16000 -e signed -b 16 -c 2 -d %DATEANDTIME%.flac silence 1 0.5 14% 1 1.0 15% : newfile : restart
+
+C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win32\bin\Release\pocketsphinx_continuous.exe -hmm C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win32\model\hmm\en_US\hub4wsj_sc_8k -dict C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win32\model\lm\en_US\cmu07a.dic -lm C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win32\model\lm\en_US\wsj0vp.5000.DMP
+
+upgrades
+========
+if it's close, asks if you ment somthing else, if yes then adds (but only after a few times?)
+
+
+
+C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win3
+2\bin\Release>pocketsphinx_continuous -hmm C:\Users\Dean\Dropbox\jarvis\sphinx\p
+ocketsphinx-0.8-win32\pocketsphinx-0.8-win32\model\hmm\en_US\hub4wsj_sc_8k -dict
+ C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphinx-0.8-win32\pocketsphinx-0.8-win
+32\model\lm\en_US\cmu07a.dic -lm C:\Users\Dean\Dropbox\jarvis\sphinx\pocketsphin
+x-0.8-win32\pocketsphinx-0.8-win32\model\lm\en_US\wsj0vp.5000.DMP
